@@ -1,5 +1,6 @@
 let gameBoard = ["","","","","","","","",""];
 let turn = "Player1";
+let gameStatus = "Progress";
 const square0 = document.getElementById("square0");
 const square1 = document.getElementById("square1");
 const square2 = document.getElementById("square2");
@@ -19,8 +20,8 @@ square6.textContent = gameBoard[6];
 square7.textContent = gameBoard[7];
 square8.textContent = gameBoard[8];
 
-
-document.getElementById("turn").textContent = "Welcome!";
+const turnDisplay = document.getElementById("turn");
+turnDisplay.textContent = "Welcome!";
 
 
 
@@ -68,6 +69,8 @@ function XPlayerMove(gameBoardIndex) {
     if (gameBoard[gameBoardIndex] == "") {
         gameBoard[gameBoardIndex] = "X";
         turn = "Player2";
+        turnDisplay.textContent = "It is " + turn + "'s turn!";
+        winCheck();
     }
     return gameBoard;
 }
@@ -76,15 +79,21 @@ function OPlayerMove(gameBoardIndex) {
     if (gameBoard[gameBoardIndex] == "") {
         gameBoard[gameBoardIndex] = "O";
         turn = "Player1";
+        turnDisplay.textContent = "It is " + turn + "'s turn!";
+        winCheck();
     }
     return gameBoard;
 }
 
 function move(gameBoardIndex) {
-    if (turn == "Player1") {
-        XPlayerMove(gameBoardIndex);
-    } else if (turn == "Player2") {
-        OPlayerMove(gameBoardIndex);
+    if (gameStatus == "Progress") {
+        if (turn == "Player1") {
+            XPlayerMove(gameBoardIndex);
+        } else if (turn == "Player2") {
+            OPlayerMove(gameBoardIndex);
+        }
+    } else {
+        turnDisplay.textContent = "Game Over!  Refresh the page to play again!"
     }
     updateBoard();
 }
@@ -101,3 +110,42 @@ function updateBoard() {
     square8.textContent = gameBoard[8];
 }
 
+function winCheck() {
+    //Row win checks
+    if (gameBoard[0] == gameBoard[1] && gameBoard[1] == gameBoard[2] && gameBoard[0] !== "") {
+        turnDisplay.textContent = "Game Over!  Refresh the page to play again!"
+        gameStatus = "Done";
+    }
+    if (gameBoard[3] == gameBoard[4] && gameBoard[4] == gameBoard[5] && gameBoard[3] !== "") {
+        turnDisplay.textContent = "Game Over!  Refresh the page to play again!"
+        gameStatus = "Done";
+    }
+    if (gameBoard[6] == gameBoard[7] && gameBoard[7] == gameBoard[8] && gameBoard[6] !== "") {
+        turnDisplay.textContent = "Game Over!  Refresh the page to play again!"
+        gameStatus = "Done";
+    }
+
+    //Column win checks
+    if (gameBoard[0] == gameBoard[3] && gameBoard[3] == gameBoard[6] && gameBoard[0] !== "") {
+        turnDisplay.textContent = "Game Over!  Refresh the page to play again!"
+        gameStatus = "Done";
+    }
+    if (gameBoard[1] == gameBoard[4] && gameBoard[4] == gameBoard[7] && gameBoard[1] !== "") {
+        turnDisplay.textContent = "Game Over!  Refresh the page to play again!"
+        gameStatus = "Done";
+    }
+    if (gameBoard[2] == gameBoard[5] && gameBoard[5] == gameBoard[8] && gameBoard[2] !== "") {
+        turnDisplay.textContent = "Game Over!  Refresh the page to play again!"
+        gameStatus = "Done";
+    }
+
+    //Diagonal win checks
+    if (gameBoard[0] == gameBoard[4] && gameBoard[4] == gameBoard[8] && gameBoard[0] !== "") {
+        turnDisplay.textContent = "Game Over!  Refresh the page to play again!"
+        gameStatus = "Done";
+    }
+    if (gameBoard[2] == gameBoard[4] && gameBoard[4] == gameBoard[6] && gameBoard[4] !== "") {
+        turnDisplay.textContent = "Game Over!  Refresh the page to play again!"
+        gameStatus = "Done";
+    }
+}
