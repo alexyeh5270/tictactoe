@@ -67,6 +67,7 @@ document.getElementById('square8').addEventListener('click', () => {
 function XPlayerMove(gameBoardIndex) {
     if (gameBoard[gameBoardIndex] == "") {
         gameBoard[gameBoardIndex] = "X";
+        turn = "Player2";
     }
     return gameBoard;
 }
@@ -74,17 +75,29 @@ function XPlayerMove(gameBoardIndex) {
 function OPlayerMove(gameBoardIndex) {
     if (gameBoard[gameBoardIndex] == "") {
         gameBoard[gameBoardIndex] = "O";
+        turn = "Player1";
     }
     return gameBoard;
 }
 
 function move(gameBoardIndex) {
-    gameBoard[4] = "X";
-    square4.textContent = gameBoard[4];
     if (turn == "Player1") {
         XPlayerMove(gameBoardIndex);
     } else if (turn == "Player2") {
         OPlayerMove(gameBoardIndex);
     }
+    updateBoard();
+}
+
+function updateBoard() {
+    square0.textContent = gameBoard[0];
+    square1.textContent = gameBoard[1];
+    square2.textContent = gameBoard[2];
+    square3.textContent = gameBoard[3];
+    square4.textContent = gameBoard[4];
+    square5.textContent = gameBoard[5];
+    square6.textContent = gameBoard[6];
+    square7.textContent = gameBoard[7];
+    square8.textContent = gameBoard[8];
 }
 
