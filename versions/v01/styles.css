@@ -1,0 +1,39 @@
+
+* {
+    font-family: 'Bangers',system-ui;
+    background-color: #402E7A;
+}
+
+h1 {
+    font-size: 92px;
+    display: flex;
+    justify-content: center;
+    color: #3DC2EC;
+}
+
+#turn {
+    font-size: 92px;
+    display: flex;
+    justify-content: center;
+    color: #F7F9F2; 
+}
+
+#gameBoard {
+    justify-content: center;
+    display: flex;
+    align-items: flex-start;
+    font-size: 92px;
+    color: #3DC2EC;
+}
+
+.square {
+    border: 2px solid;
+    padding: 20px;
+    color: #3DC2EC;
+    font-size: 200px;
+    width: 200px;
+    justify-content: center;
+    display: flex;
+    height:200px;
+}
+  
